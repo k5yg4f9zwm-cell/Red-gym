@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090909">
+  <title>RED GYM — тренажёрный зал в Кызылорде</title>
+  <meta name="description" content="RED GYM — тренажёрный зал в Кызылорде. Персональные тренировки, квалифицированные инструкторы и абонементы для студентов и взрослых.">
+  <style>
+    :root{
+      --bg:#070707;
+      --card:#111111;
+      --card2:#171717;
+      --red:#e10600;
+      --red2:#ff2620;
+      --white:#f7f7f7;
+      --muted:#a9a9a9;
+      --line:#2b2b2b;
+      --green:#20d15a;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;background:
+        radial-gradient(circle at 80% 0%, rgba(225,6,0,.16), transparent 32rem),
+        radial-gradient(circle at 10% 30%, rgba(225,6,0,.08), transparent 28rem),
+        var(--bg);
+      color:var(--white);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .wrap{width:min(calc(100% - 36px),var(--max));margin:auto}
+    header{
+      position:fixed;top:0;left:0;right:0;z-index:50;
+      background:rgba(7,7,7,.76);backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.08em}
+    .brand img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--red)}
+    .navlinks{display:flex;gap:28px;color:#d8d8d8;font-size:14px}
+    .navlinks a:hover{color:#fff}
+    .nav-cta{padding:11px 17px;border-radius:12px;background:var(--red);font-weight:800}
+    .hero{min-height:760px;padding:155px 0 80px;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+    .eyebrow{display:inline-flex;gap:9px;align-items:center;color:#ff4943;font-weight:900;letter-spacing:.13em;font-size:12px;text-transform:uppercase}
+    .eyebrow:before{content:"";width:34px;height:2px;background:var(--red)}
+    h1{font-size:clamp(48px,7vw,92px);line-height:.9;margin:18px 0 25px;letter-spacing:-.055em;text-transform:uppercase}
+    h1 span{color:var(--red);text-shadow:0 0 28px rgba(225,6,0,.25)}
+    .hero p{font-size:18px;color:#c1c1c1;max-width:650px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 20px;border-radius:13px;font-weight:850;border:1px solid var(--line);transition:.2s}
+    .btn.primary{background:var(--red);border-color:var(--red)}
+    .btn.primary:hover{background:var(--red2);transform:translateY(-2px)}
+    .btn.secondary:hover{border-color:#777;transform:translateY(-2px)}
+    .hero-card{
+      position:relative;aspect-ratio:1/1.06;border-radius:30px;overflow:hidden;
+      background:linear-gradient(145deg,#1b1b1b,#070707);
+      border:1px solid #343434;box-shadow:0 30px 90px rgba(0,0,0,.6);
+      display:grid;place-items:center;
+    }
+    .hero-card:before{content:"";position:absolute;inset:10%;border-radius:50%;border:1px solid rgba(225,6,0,.45);box-shadow:0 0 80px rgba(225,6,0,.16)}
+    .hero-logo{width:58%;position:relative;border-radius:50%;border:5px solid #e10600;box-shadow:0 0 60px rgba(225,6,0,.32)}
+    .hero-stamp{position:absolute;left:24px;bottom:24px;background:#0e0e0ee8;border:1px solid #383838;border-radius:15px;padding:13px 16px;font-weight:800}
+    section{padding:90px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:34px}
+    .section-head h2{font-size:clamp(34px,5vw,58px);line-height:1;margin:0;letter-spacing:-.045em;text-transform:uppercase}
+    .section-head p{max-width:520px;color:var(--muted);margin:0}
+    .prices{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .price-card{background:linear-gradient(145deg,#151515,#0d0d0d);border:1px solid #303030;border-radius:24px;padding:28px}
+    .price-card.featured{border-color:rgba(225,6,0,.7);box-shadow:inset 0 0 0 1px rgba(225,6,0,.12)}
+    .price-card h3{margin:0 0 4px;font-size:28px}
+    .price-card .sub{color:#999;font-size:13px;margin-bottom:20px}
+    .price-row{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:15px 0;border-bottom:1px solid #292929}
+    .price-row:last-child{border-bottom:0}
+    .price-row span{color:#d4d4d4}
+    .price-row strong{white-space:nowrap;color:#fff;background:#1c1c1c;border:1px solid #3a3a3a;padding:7px 11px;border-radius:9px}
+    .price-row strong.hot{background:rgba(225,6,0,.13);border-color:rgba(225,6,0,.5)}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+    .feature{padding:24px;border-radius:20px;background:var(--card);border:1px solid #272727}
+    .feature .icon{font-size:27px;margin-bottom:14px}
+    .feature h3{margin:0 0 8px}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .gallery img{width:100%;aspect-ratio:1/1.05;object-fit:cover;border-radius:18px;border:1px solid #282828;filter:saturate(.92)}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .info-card{background:var(--card);border:1px solid #292929;border-radius:24px;padding:30px}
+    .info-card h3{margin:0 0 18px;font-size:25px}
+    .contact{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid #292929}
+    .contact:last-child{border:0}
+    .contact-icon{width:40px;height:40px;border-radius:12px;background:#191919;display:grid;place-items:center}
+    .contact small{display:block;color:#888;margin-bottom:2px}
+    .schedule{display:grid;gap:10px}
+    .schedule div{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid #292929}
+    .schedule div:last-child{border:0}
+    .map{
+      margin-top:20px;border-radius:24px;min-height:230px;border:1px solid #292929;overflow:hidden;
+      background:
+        linear-gradient(135deg,rgba(225,6,0,.16),rgba(0,0,0,.15)),
+        repeating-linear-gradient(45deg,#141414 0 20px,#101010 20px 40px);
+      display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;
+    }
+    .map strong{font-size:20px}
+    footer{padding:40px 0 60px;border-top:1px solid #222;color:#858585}
+    .footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .footer-brand{color:#fff;font-weight:900}
+    .mobilebar{display:none}
+    @media(max-width:850px){
+      .navlinks{display:none}
+      .hero{grid-template-columns:1fr;padding-top:125px;min-height:auto}
+      .hero-card{max-width:540px;width:100%;margin:auto}
+      .prices,.info-grid{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr 1fr}
+      .section-head{display:block}
+      .section-head p{margin-top:15px}
+      .mobilebar{
+        display:flex;position:fixed;bottom:14px;left:14px;right:14px;z-index:60;
+        background:rgba(16,16,16,.92);border:1px solid #363636;backdrop-filter:blur(16px);
+        padding:8px;border-radius:17px;gap:8px
+      }
+      .mobilebar a{flex:1;text-align:center;padding:12px 5px;border-radius:11px;font-size:13px;font-weight:800}
+      .mobilebar .wa{background:#1db954}
+      .mobilebar .call{background:var(--red)}
+    }
+    @media(max-width:520px){
+      .wrap{width:min(calc(100% - 26px),var(--max))}
+      nav{height:68px}
+      .brand img{width:42px;height:42px}
+      h1{font-size:54px}
+      .hero{gap:35px}
+      section{padding:65px 0}
+      .price-card,.info-card{padding:22px}
+      .gallery{gap:9px}
+      .gallery img{border-radius:13px}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#top"><img src="assets/logo.jpg" alt="RED GYM logo"><span>RED GYM</span></a>
+      <div class="navlinks">
+        <a href="#prices">Абонементы</a>
+        <a href="#about">О зале</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+      <a class="nav-cta" href="https://wa.me/77774023339" target="_blank">Записаться</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <div>
+      <div class="eyebrow">Тренажёрный зал · Кызылорда</div>
+      <h1>Стань<br><span>сильнее.</span></h1>
+      <p>RED GYM — пространство для тех, кто хочет тренироваться системно. Персональный тренинг, квалифицированные инструкторы и абонементы для студентов и взрослых.</p>
+      <div class="actions">
+        <a class="btn primary" href="#prices">Смотреть цены</a>
+        <a class="btn secondary" href="https://wa.me/77774023339" target="_blank">WhatsApp →</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img class="hero-logo" src="assets/logo.jpg" alt="RED GYM">
+      <div class="hero-stamp">КЫЗЫЛОРДА · МАЙЛЫҚҰМ, 5</div>
+    </div>
+  </section>
+
+  <section id="prices">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Прайс</h2>
+        <p>Актуальные тарифы из предоставленного прайс-листа RED GYM. Выберите формат тренировок и срок, который подходит вам.</p>
+      </div>
+      <div class="prices">
+        <article class="price-card featured">
+          <h3>Студенческий</h3>
+          <div class="sub">Абонементы для студентов</div>
+          <div class="price-row"><span>Разовый</span><strong class="hot">3 000 ₸</strong></div>
+          <div class="price-row"><span>12 занятий</span><strong>12 000 ₸</strong></div>
+          <div class="price-row"><span>16 занятий</span><strong>15 000 ₸</strong></div>
+          <div class="price-row"><span>Безлимит · 1 месяц</span><strong>20 000 ₸</strong></div>
+          <div class="price-row"><span>3 месяца</span><strong>25 000 ₸</strong></div>
+          <div class="price-row"><span>6 месяцев</span><strong>50 000 ₸</strong></div>
+          <div class="price-row"><span>12 месяцев</span><strong>95 000 ₸</strong></div>
+        </article>
+        <article class="price-card">
+          <h3>Взрослый</h3>
+          <div class="sub">Абонементы для взрослых</div>
+          <div class="price-row"><span>Разовый</span><strong class="hot">3 000 ₸</strong></div>
+          <div class="price-row"><span>12 занятий</span><strong>15 000 ₸</strong></div>
+          <div class="price-row"><span>16 занятий</span><strong>18 000 ₸</strong></div>
+          <div class="price-row"><span>Безлимит · 1 месяц</span><strong>23 000 ₸</strong></div>
+          <div class="price-row"><span>3 месяца</span><strong>34 000 ₸</strong></div>
+          <div class="price-row"><span>6 месяцев</span><strong>60 000 ₸</strong></div>
+          <div class="price-row"><span>12 месяцев</span><strong>110 000 ₸</strong></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Почему RED GYM</h2>
+        <p>Всё необходимое для регулярных тренировок — в одном месте.</p>
+      </div>
+      <div class="features">
+        <article class="feature"><div class="icon">🏋️</div><h3>Персональный тренинг</h3><p>Индивидуальный подход и работа с тренером под ваши цели.</p></article>
+        <article class="feature"><div class="icon">🎯</div><h3>Квалифицированные инструкторы</h3><p>Тренеры помогают выстроить технику и структуру тренировок.</p></article>
+        <article class="feature"><div class="icon">🔥</div><h3>Атмосфера для прогресса</h3><p>Тренируйтесь в зале с характером RED GYM и двигайтесь к результату.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Внутри зала</h2>
+        <p>Фрагменты контента из Instagram-профиля RED GYM.</p>
+      </div>
+      <div class="gallery">
+        <img src="assets/gym-1.jpg" alt="RED GYM">
+        <img src="assets/gym-2.jpg" alt="RED GYM тренировка">
+        <img src="assets/gym-3.jpg" alt="RED GYM тренировка">
+      </div>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Контакты</h2>
+        <p>Запишитесь на тренировку или уточните наличие нужного абонемента.</p>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Связаться</h3>
+          <a class="contact" href="tel:+77774023339">
+            <span class="contact-icon">☎</span>
+            <span><small>Телефон</small>+7 777 402 33 39</span>
+          </a>
+          <a class="contact" href="https://wa.me/77774023339" target="_blank">
+            <span class="contact-icon">◉</span>
+            <span><small>WhatsApp</small>Написать в WhatsApp</span>
+          </a>
+          <a class="contact" href="https://www.instagram.com/red_gym_kzo/" target="_blank">
+            <span class="contact-icon">◎</span>
+            <span><small>Instagram</small>@red_gym_kzo</span>
+          </a>
+        </div>
+        <div class="info-card">
+          <h3>График</h3>
+          <div class="schedule">
+            <div><span>Пн · Ср · Пт</span><strong>06:00–23:00</strong></div>
+            <div><span>Вт · Чт · Сб</span><strong>08:00–23:00</strong></div>
+            <div><span>Вс</span><strong>уточнить</strong></div>
+          </div>
+          <div class="map">
+            <div><strong>📍 Кызылорда, ул. Майлқұм, 5</strong><br><span style="color:#999">2 этаж</span><br><br>
+              <a class="btn primary" href="https://2gis.kz/kyzylorda/firm/70000001063092342" target="_blank">Открыть в 2ГИС</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="footer-brand">RED GYM · КЫЗЫЛОРДА</div>
+    <div>© 2026 RED GYM</div>
+  </div>
+</footer>
+
+<div class="mobilebar">
+  <a class="call" href="tel:+77774023339">Позвонить</a>
+  <a class="wa" href="https://wa.me/77774023339" target="_blank">WhatsApp</a>
+</div>
+</body>
+</html>
